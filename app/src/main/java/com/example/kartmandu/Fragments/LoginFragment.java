@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.kartmandu.Api.UserApi;
 import com.example.kartmandu.DashboardMain;
+import com.example.kartmandu.Model.Authtoken;
 import com.example.kartmandu.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -55,7 +56,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.btn_lsignin)
         {
-            Retrofit retrofit=new Retrofit.Builder()
+                        Retrofit retrofit=new Retrofit.Builder()
                     .baseUrl("http://10.0.2.2:6060/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
@@ -65,18 +66,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             String pass=etpass.getText().toString();
 
 
-            Call<String> Logincall=uapi.login(uname,pass);
+            Call<Authtoken> Logincall=uapi.login(uname,pass);
 
-            Logincall.enqueue(new Callback<String>() {
+            Logincall.enqueue(new Callback<Authtoken>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
+                public void onResponse(Call<Authtoken> call, Response<Authtoken> response) {
                     Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(getActivity(), DashboardMain.class);
                     startActivity(intent);
                 }
 
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
+                public void onFailure(Call<Authtoken> call, Throwable t) {
                     Toast.makeText(getActivity(), "Error"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

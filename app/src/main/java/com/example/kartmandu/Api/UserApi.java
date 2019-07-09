@@ -14,6 +14,6 @@ public interface UserApi {
     @POST("login")
     Call<Authtoken> login(@Field("username") String username, @Field("password") String password);
 
-    @POST("registeruser")
+    @POST("register")
     Call<Void> useradd(@Body User userModel);
 }

@@ -1,6 +1,7 @@
 package com.example.kartmandu.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -61,7 +62,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 Gson gson=new GsonBuilder()
                         .setLenient().create();
                 Retrofit retrofit=new Retrofit.Builder()
-                        .baseUrl("http://10.0.2.2:6060/")
+                        .baseUrl("http://10.0.2.2:8000/")
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
                 uapi=retrofit.create(UserApi.class);
@@ -77,6 +78,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 Usercall.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
+                        Intent intent = new Intent(getActivity(),LoginFragment.class);
+                        startActivity(intent);
                         Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                     }
 

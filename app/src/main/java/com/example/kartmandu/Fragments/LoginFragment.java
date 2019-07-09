@@ -57,7 +57,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.btn_lsignin)
         {
                         Retrofit retrofit=new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:6060/")
+                    .baseUrl("http://10.0.2.2:8000/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             uapi=retrofit.create(UserApi.class);

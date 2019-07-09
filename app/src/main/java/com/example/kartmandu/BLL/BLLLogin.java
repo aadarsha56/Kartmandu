@@ -19,14 +19,14 @@ public class BLLLogin {
     UserApi uapi;
 
     Retrofit retrofit=new Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:6060/")
+            .baseUrl("http://10.0.2.2:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     //uapi = retrofit.create(UserApi.class);
     private String username;
     private String password;
     Authtoken authtoken;
-    private static final String BASE_URL = "http://10.0.2.2:3000/";
+    private static final String BASE_URL = "http://10.0.2.2:8000/";
 
 
 

@@ -1,8 +1,10 @@
 package com.example.kartmandu.Fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationManagerCompat;
 import android.view.LayoutInflater;
@@ -83,6 +85,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onFailure(Call<Authtoken> call, Throwable t) {
                     Toast.makeText(getActivity(), "Error"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(3000);
                 }
             });
         }

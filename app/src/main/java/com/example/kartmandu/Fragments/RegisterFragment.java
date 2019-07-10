@@ -98,8 +98,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 Usercall.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Intent intent = new Intent(getActivity(),LoginFragment.class);
-                        startActivity(intent);
+  //                      Intent intent = new Intent(getActivity(),LoginFragment.class);
+//                        startActivity(intent);
+                        DispalyNotification();
                         Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                     }
 

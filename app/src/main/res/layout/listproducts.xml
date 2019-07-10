@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" 
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/parent_layout">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
@@ -9,15 +9,16 @@
         android:id="@+id/productsimage"
         android:src="@mipmap/ic_launcher"
         />
+
     <TextView
+        android:id="@+id/product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product"
-        android:id="@+id/product_name"
+        android:layout_marginLeft="47dp"
         android:layout_toRightOf="@+id/productsimage"
+        android:text="Product"
+        android:layout_marginTop="30dp"
         android:textColor="#000"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
 </RelativeLayout>

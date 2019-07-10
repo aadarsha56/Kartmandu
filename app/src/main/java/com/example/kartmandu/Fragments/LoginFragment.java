@@ -4,6 +4,7 @@ package com.example.kartmandu.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             String pass=etpass.getText().toString();
 
 
+
             Call<Authtoken> Logincall=uapi.login(uname,pass);
 
             Logincall.enqueue(new Callback<Authtoken>() {
@@ -74,6 +76,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(getActivity(), DashboardMain.class);
                     startActivity(intent);
+
+
                 }
 
                 @Override

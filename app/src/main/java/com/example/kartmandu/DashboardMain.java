@@ -24,7 +24,8 @@ Button products;
             startActivity(intent);
         }
         if (v.getId()==R.id.viewProfile){
-            Intent intent = new Intent (DashboardMain, )
+            Intent intent = new Intent (DashboardMain.this, Feedback.class);
+            startActivity(intent);
         }
 
     }

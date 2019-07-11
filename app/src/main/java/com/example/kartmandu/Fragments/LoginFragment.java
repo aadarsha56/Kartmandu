@@ -4,9 +4,6 @@ package com.example.kartmandu.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -16,7 +13,6 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,8 +31,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static android.content.Context.SENSOR_SERVICE;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -54,7 +48,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.loginfragment, container, false);
-        proximity();
 
         etuname = view.findViewById(R.id.et_lusername);
         etpass = view.findViewById(R.id.et_lpassword);
@@ -88,20 +81,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             Authtoken authtoken = bllLogin.checkUser();
             if (!authtoken.getToken().isEmpty()) {
 
-                preferences = getActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE);
+                preferences=getActivity().getSharedPreferences("user_data",Context.MODE_PRIVATE);
 
-                String fname = authtoken.getUser().getFname();
-                String lname = authtoken.getUser().getLname();
-                String email = authtoken.getUser().getEmail();
-                String username = authtoken.getUser().getUsername();
-                String password = authtoken.getUser().getPassword();
+                String fname=authtoken.getUser().getFname();
+                String lname=authtoken.getUser().getLname();
+                String email=authtoken.getUser().getEmail();
+                String username=authtoken.getUser().getUsername();
+                String password=authtoken.getUser().getPassword();
 
-                editor = preferences.edit();
-                editor.putString("firstname", fname).commit();
-                editor.putString("lastname", lname).commit();
-                editor.putString("email", email).commit();
-                editor.putString("username", username).commit();
-                editor.putString("password", password).commit();
+                editor=preferences.edit();
+                editor.putString("firstname",fname).commit();
+                editor.putString("lastname",lname).commit();
+                editor.putString("email",email).commit();
+                editor.putString("username",username).commit();
+                editor.putString("password",password).commit();
 
 
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
@@ -109,7 +102,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
 
             } else {
-                Toast.makeText(getActivity(), "Error while logging in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error while logging in" , Toast.LENGTH_SHORT).show();
                 Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(3000);
 
@@ -117,40 +110,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-//    public void proximity() {
-//        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
-//        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-//
-//        if (sensor == null) {
-//            Toast.makeText(this, "No sensor detected", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(this, "Sensor Kicking in .....", Toast.LENGTH_SHORT).show();
-//        }
-
-        private void proximity() {
-            sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
-            Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-            SensorEventListener proxilistener = new SensorEventListener() {
-                @Override
-                public void onSensorChanged(SensorEvent event) {
-                    if (event.values[0] <= 2) {
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
-                }
-
-                @Override
-                public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-                }
-            };
-            sensorManager.registerListener(proxilistener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-        }
-    }
-
+}
 
 
 

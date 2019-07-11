@@ -5,9 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class DashboardMain extends AppCompatActivity implements View.OnClickListener {
-Button products, profile, feedback, logout;
+Button products, profile,  logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,9 @@ Button products, profile, feedback, logout;
         profile = findViewById(R.id.viewProfile);
         profile.setOnClickListener(this);
 
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(this);
+
     }
 
     @Override
@@ -27,16 +31,17 @@ Button products, profile, feedback, logout;
             Intent intent = new Intent(DashboardMain.this, Products.class);
             startActivity(intent);
         }
-        if (v.getId()==R.id.feedback){
-            Intent intent = new Intent (DashboardMain.this, Feedback.class);
-            startActivity(intent);
-        }
+
         if(v.getId()== R.id.viewProfile){
             Intent intent = new Intent(DashboardMain.this, Profile.class);
             startActivity(intent);
         }
         if (v.getId() == R.id.logout){
             Intent intent = new Intent (DashboardMain.this, Logout.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Log Out Successful", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
     }

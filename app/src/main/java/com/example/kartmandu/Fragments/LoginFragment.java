@@ -3,7 +3,9 @@ package com.example.kartmandu.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationManagerCompat;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kartmandu.Api.UserApi;
+import com.example.kartmandu.BLL.BLLLogin;
 import com.example.kartmandu.DashboardMain;
 import com.example.kartmandu.Model.Authtoken;
 import com.example.kartmandu.R;
@@ -32,64 +35,102 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    EditText etuname,etpass;
+    EditText etuname, etpass;
     Button btn_login;
     UserApi uapi;
 
-    public LoginFragment() {
-
-    }
-
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.loginfragment, container, false);
+        View view = inflater.inflate(R.layout.loginfragment, container, false);
 
-        etuname=view.findViewById(R.id.et_lusername);
-        etpass=view.findViewById(R.id.et_lpassword);
-        btn_login=view.findViewById(R.id.btn_lsignin);
+        etuname = view.findViewById(R.id.et_lusername);
+        etpass = view.findViewById(R.id.et_lpassword);
+        btn_login = view.findViewById(R.id.btn_lsignin);
 
         btn_login.setOnClickListener(this);
 
         return view;
     }
 
+    private void StrictMode() {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+    }
+
+
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_lsignin)
-        {
-                        Retrofit retrofit=new Retrofit.Builder()
+        if (v.getId() == R.id.btn_lsignin) {
+            Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://10.0.2.2:8000/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            uapi=retrofit.create(UserApi.class);
+            uapi = retrofit.create(UserApi.class);
 
-            String uname=etuname.getText().toString();
-            String pass=etpass.getText().toString();
+            String uname = etuname.getText().toString();
+            String pass = etpass.getText().toString();
+
+            final BLLLogin bllLogin = new BLLLogin(uname, pass);
+            StrictMode();
+            Authtoken authtoken = bllLogin.checkUser();
+            if (!authtoken.getToken().isEmpty()) {
+
+                preferences=getActivity().getSharedPreferences("user_data",Context.MODE_PRIVATE);
+
+                String fname=authtoken.getUser().getFname();
+                String lname=authtoken.getUser().getLname();
+                String email=authtoken.getUser().getEmail();
+                String username=authtoken.getUser().getUsername();
+                String password=authtoken.getUser().getPassword();
+
+                editor=preferences.edit();
+                editor.putString("firstname",fname).commit();
+                editor.putString("lastname",lname).commit();
+                editor.putString("email",email).commit();
+                editor.putString("username",username).commit();
+                editor.putString("password",password).commit();
 
 
+                Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DashboardMain.class);
+                startActivity(intent);
 
-            Call<Authtoken> Logincall=uapi.login(uname,pass);
+            } else {
+                Toast.makeText(getActivity(), "Error while logging in" , Toast.LENGTH_SHORT).show();
+                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(3000);
 
-            Logincall.enqueue(new Callback<Authtoken>() {
-                @Override
-                public void onResponse(Call<Authtoken> call, Response<Authtoken> response) {
-                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(getActivity(), DashboardMain.class);
-                    startActivity(intent);
-
-
-                }
-
-                @Override
-                public void onFailure(Call<Authtoken> call, Throwable t) {
-                    Toast.makeText(getActivity(), "Error"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                    vibrator.vibrate(3000);
-                }
-            });
+            }
         }
-
     }
 }
+
+
+
+
+//            Call<Authtoken> Logincall=uapi.login(uname,pass);
+//            Logincall.enqueue(new Callback<Authtoken>() {
+//                @Override
+//                public void onResponse(Call<Authtoken> call, Response<Authtoken> response) {
+//                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+//                    Intent intent=new Intent(getActivity(), DashboardMain.class);
+//                    startActivity(intent);
+//
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Authtoken> call, Throwable t) {
+//                    Toast.makeText(getActivity(), "Error"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//                    Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+//                    vibrator.vibrate(3000);
+//                }
+//            });
+//        }
+//
+//    }
+//}

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class DashboardMain extends AppCompatActivity implements View.OnClickListener {
-Button products;
+Button products, profile, feedback, logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +15,10 @@ Button products;
 
         products = findViewById(R.id.viewProducts);
         products.setOnClickListener(this);
+
+        profile = findViewById(R.id.viewProfile);
+        profile.setOnClickListener(this);
+
     }
 
     @Override

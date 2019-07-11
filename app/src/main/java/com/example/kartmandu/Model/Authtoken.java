@@ -2,11 +2,11 @@ package com.example.kartmandu.Model;
 
 public class Authtoken {
     private String token;
-    private User users;
+    private User user;
 
-    public Authtoken(String token, User users) {
+    public Authtoken(String token, User user) {
         this.token = token;
-        this.users = users;
+        this.user = user;
     }
 
     public String getToken() {
@@ -17,11 +17,11 @@ public class Authtoken {
         this.token = token;
     }
 
-    public User getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -23,4 +23,5 @@ public interface UserApi {
 
     @GET("showproducts")
     Call<List<ItemModel>> getItems();
+
 }

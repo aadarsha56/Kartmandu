@@ -54,15 +54,7 @@
             android:layout_margin="10sp"/>
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            android:background="#AED6F1"
-            android:id="@+id/btn_p_update"
-            android:layout_below="@id/p_et_password"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"/>
+
 
 
 

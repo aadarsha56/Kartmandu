@@ -23,6 +23,9 @@ Button products;
             Intent intent = new Intent(DashboardMain.this, Products.class);
             startActivity(intent);
         }
+        if (v.getId()==R.id.viewProfile){
+            Intent intent = new Intent (DashboardMain, )
+        }
 
     }
 }

@@ -9,6 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Products"
+        android:gravity="center"
         android:id="@+id/viewProducts"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Profile"
+        android:id="@+id/viewProfile"
+        android:layout_below="@+id/viewProducts"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Provide Feedback"
+        android:id="@+id/feedback"
+        android:layout_below="@+id/viewProfile"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logout"
+        android:layout_below="@+id/feedback"/>
 
 </RelativeLayout>

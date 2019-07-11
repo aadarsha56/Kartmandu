@@ -23,9 +23,16 @@ Button products;
             Intent intent = new Intent(DashboardMain.this, Products.class);
             startActivity(intent);
         }
-        if (v.getId()==R.id.viewProfile){
+        if (v.getId()==R.id.feedback){
             Intent intent = new Intent (DashboardMain.this, Feedback.class);
             startActivity(intent);
+        }
+        if(v.getId()== R.id.viewProfile){
+            Intent intent = new Intent(DashboardMain.this, Profile.class);
+            startActivity(intent);
+        }
+        if (v.getId() == R.id.logout){
+            Intent intent = new Intent (DashboardMain.this, Logout.class);
         }
 
     }

@@ -87,20 +87,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             Authtoken authtoken = bllLogin.checkUser();
             if (!authtoken.getToken().isEmpty()) {
 
-                preferences=getActivity().getSharedPreferences("user_data",Context.MODE_PRIVATE);
+                preferences = getActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE);
 
-                String fname=authtoken.getUser().getFname();
-                String lname=authtoken.getUser().getLname();
-                String email=authtoken.getUser().getEmail();
-                String username=authtoken.getUser().getUsername();
-                String password=authtoken.getUser().getPassword();
+                String fname = authtoken.getUser().getFname();
+                String lname = authtoken.getUser().getLname();
+                String email = authtoken.getUser().getEmail();
+                String username = authtoken.getUser().getUsername();
+                String password = authtoken.getUser().getPassword();
 
-                editor=preferences.edit();
-                editor.putString("firstname",fname).commit();
-                editor.putString("lastname",lname).commit();
-                editor.putString("email",email).commit();
-                editor.putString("username",username).commit();
-                editor.putString("password",password).commit();
+                editor = preferences.edit();
+                editor.putString("firstname", fname).commit();
+                editor.putString("lastname", lname).commit();
+                editor.putString("email", email).commit();
+                editor.putString("username", username).commit();
+                editor.putString("password", password).commit();
 
 
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
@@ -108,13 +108,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
 
             } else {
-                Toast.makeText(getActivity(), "Error while logging in" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error while logging in", Toast.LENGTH_SHORT).show();
                 Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(3000);
 
             }
         }
     }
+
 //    private void proximity() {
 //        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
 //        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -137,6 +138,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 //        sensorManager.registerListener(proxilistener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
+
 
 
 

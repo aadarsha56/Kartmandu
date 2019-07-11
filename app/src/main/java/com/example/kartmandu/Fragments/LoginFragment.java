@@ -53,7 +53,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.loginfragment, container, false);
-        proximity();
+        //proximity();
 
         etuname = view.findViewById(R.id.et_lusername);
         etpass = view.findViewById(R.id.et_lpassword);
@@ -115,29 +115,29 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             }
         }
     }
-    private void proximity() {
-        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
-        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        SensorEventListener proxilistener = new SensorEventListener() {
-            @Override
-            public void onSensorChanged(SensorEvent event) {
-                if (event.values[0] <= 2) {
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.addCategory(Intent.CATEGORY_HOME);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-            }
-        };
-        sensorManager.registerListener(proxilistener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+//    private void proximity() {
+//        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
+//        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+//        SensorEventListener proxilistener = new SensorEventListener() {
+//            @Override
+//            public void onSensorChanged(SensorEvent event) {
+//                if (event.values[0] <= 2) {
+//                    Intent intent = new Intent(Intent.ACTION_MAIN);
+//                    intent.addCategory(Intent.CATEGORY_HOME);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//
+//            }
+//        };
+//        sensorManager.registerListener(proxilistener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
-}
+
 
 
 

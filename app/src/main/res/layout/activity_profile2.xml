@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E4EE79"
+    tools:context=".Profile">
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Profile"
+            android:id="@+id/p_tv_title"
+
+            android:layout_marginTop="150dp"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_et_fname"
+            android:hint="Firstname"
+            android:layout_below="@+id/p_tv_title"
+            android:layout_margin="10sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_et_lname"
+            android:hint="Lastname"
+            android:layout_below="@+id/p_et_fname"
+            android:layout_margin="10sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_et_username"
+            android:hint="Username"
+            android:layout_below="@+id/p_et_lname"
+            android:layout_margin="10sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_et_email"
+            android:hint="E-mail"
+            android:layout_below="@+id/p_et_username"
+            android:layout_margin="10sp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_et_password"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:layout_below="@+id/p_et_email"
+            android:layout_margin="10sp"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:background="#AED6F1"
+            android:id="@+id/btn_p_update"
+            android:layout_below="@id/p_et_password"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"/>
+
+
+
+</RelativeLayout>
